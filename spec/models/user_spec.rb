@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   let(:test_user) { build(:user) }
-
+  let(:test_user_with_tasks) { build(:user_with_tasks) }
+  
   it "is valid with the appropriate attributes" do
   	expect(test_user).to be_valid
   end
@@ -24,6 +25,6 @@ RSpec.describe User, type: :model do
   end
 
   it "has two tasks" do
-  	expect(test_user.tasks.length).to eq(2)
+  	expect(test_user_with_tasks.tasks.length).to eq(2)
   end
 end

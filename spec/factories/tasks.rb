@@ -13,6 +13,13 @@ FactoryBot.define do
     due_date { DateTime.now }
   end
 
+  factory :email, class: Task do
+    association :user
+    name { "Write an e-mail" }
+    priority { 1 }
+    due_date { DateTime.now }
+  end
+
   factory :invalid_task, class: Task do
     association :user
   	name { nil }
