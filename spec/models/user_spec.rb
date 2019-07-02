@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  let(:test_user) { build(:user) }
+  let(:test_user) { build_stubbed(:user) }
   let(:test_user_with_tasks) { build(:user_with_tasks) }
   
   it "is valid with the appropriate attributes" do
@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is invalid without a firstname" do
-  	test_user.firstname = nil
+    test_user.firstname = nil
   	expect(test_user).not_to be_valid
   end
 

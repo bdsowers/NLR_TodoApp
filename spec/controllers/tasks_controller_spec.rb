@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
+	before { sign_in(create(:user)) }
+
 	describe "GET #index" do
 		it "renders the index template" do
 			get :index
@@ -136,6 +138,14 @@ RSpec.describe TasksController, type: :controller do
 			task.save
 			delete :destroy, params: { id: task.to_param }
 			expect(response).to redirect_to(tasks_path)
+		end
+	end
+
+	describe "unauthenticated users" do
+		it "will be asked to log in" do
+			sign_out(:user)
+			get :index
+			expect(response).to redirect_to(new_user_session_path)
 		end
 	end
 end

@@ -4,6 +4,7 @@ feature 'tasks/index' do
 	scenario 'shows a list of tasks' do
 		create(:homework)
 		create(:email)
+		sign_in(create(:user))
 
 		visit tasks_path
 
@@ -15,6 +16,7 @@ end
 feature 'New Task' do
 	scenario 'user adds a new task' do
 		user = create(:user)
+		sign_in(create(:user))
 		visit tasks_path
 
 		expect {
@@ -34,7 +36,7 @@ end
 feature 'Edit Task' do
 	scenario 'user edits task' do
 		task = create(:homework)
-
+		sign_in(create(:user))
 		visit task_path(task)
 
 		click_link 'Edit'
